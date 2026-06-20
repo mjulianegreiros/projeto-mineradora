@@ -1,74 +1,56 @@
 # Sistema Integrado da Mineradora
 
-Projeto final estruturado com base no documento "L10 - Criação do Projeto",
-contendo Front-end (React) e Back-end (Node.js + Express + Supabase).
+Projeto final da disciplina, sistema de gestão pra mineradora com front-end em React e back-end em Node + Express, usando Supabase como banco de dados.
 
-## Estrutura
+## O que tem aqui
 
+- Cadastro de equipamentos
+- Cadastro de cidades
+- Cadastro de funcionários
+- Cadastro de serviços
+
+Cada um desses tem uma página no front pra listar e cadastrar, e uma rota no back que conversa com o Supabase.
+
+## Como rodar
+
+Primeiro cria o banco no Supabase e roda o `banco_de_dados.sql` que tá na raiz do projeto (é só copiar e colar no SQL Editor de lá).
+
+Depois pega a URL e a key do projeto (em Project Settings > API) e coloca no `.env` dentro da pasta `backend`.
+
+Pra rodar o back:
 ```
-projeto-mineradora/
-├── banco_de_dados.sql      <- Script SQL com as 4 tabelas (cidades, equipamentos, funcionarios, servicos)
-├── backend/
-│   ├── .env                <- Preencha com sua URL e chave do Supabase
-│   ├── package.json
-│   └── src/
-│       ├── config/supabaseClient.js
-│       ├── controllers/    <- um controller por entidade
-│       ├── routes/         <- uma rota por entidade
-│       └── server.js
-└── frontend/
-    ├── index.html
-    ├── package.json
-    ├── vite.config.js
-    └── src/
-        ├── components/Menu.jsx
-        ├── pages/           <- Inicio, Equipamentos, Cidades, Funcionarios, Servicos
-        ├── services/api.js
-        ├── App.jsx
-        └── main.jsx
-```
-
-## Passo a passo
-
-### 1. Banco de dados (Supabase)
-1. Crie um projeto no [supabase.com](https://supabase.com).
-2. Vá em **SQL Editor** e rode o conteúdo de `banco_de_dados.sql`.
-3. Vá em **Project Settings > API** e copie a **URL** e a **anon/public key**.
-
-### 2. Backend
-```bash
 cd backend
 npm install
-```
-Edite o arquivo `.env` com sua URL e chave do Supabase:
-```
-SUPABASE_URL=https://SEU-PROJETO.supabase.co
-SUPABASE_KEY=SUA_ANON_PUBLIC_KEY
-PORT=3001
-```
-Inicie o servidor:
-```bash
 npm run dev
 ```
 
-### 3. Frontend
-```bash
+Pra rodar o front (em outro terminal):
+```
 cd frontend
 npm install
 npm run dev
 ```
-O frontend já está configurado para consumir a API em `http://localhost:3001/api`
-(edite essa URL em `src/services/api.js` se necessário).
 
-### 4. Deploy
-- **GitHub**: suba o projeto em um repositório.
-- **Netlify**: conecte o repositório e configure a pasta `frontend` como diretório
-  de build (comando `npm run build`, pasta de publicação `dist`).
+Se o front não estiver achando a API, confere a URL no `services/api.js`, tem que bater com a porta que o back tá usando.
 
-## Observações
+## Estrutura
 
-- As páginas **Cidades**, **Funcionários** e **Serviços** foram construídas seguindo
-  exatamente o mesmo padrão da página **Equipamentos**, como solicitado no documento.
-- As tabelas `funcionarios` e `servicos` foram complementadas no script SQL com
-  colunas básicas (`nome`/`cargo` e `descricao`/`status`, respectivamente). Sinta-se
-  livre para adicionar mais colunas conforme a necessidade do projeto.
+```
+backend/
+  src/
+    config -> conexão com supabase
+    controllers -> a lógica de cada cadastro
+    routes -> as rotas da api
+    server.js
+
+frontend/
+  src/
+    components/Menu.jsx
+    pages/ -> Inicio, Equipamentos, Cidades, Funcionarios, Servicos
+    services/api.js
+    App.jsx
+```
+
+## Obs
+
+As páginas de Cidades, Funcionários e Serviços eu fiz seguindo o mesmo modelo que a professora passou pra Equipamentos. As tabelas de funcionários e serviços eu que defini as colunas (nome/cargo pra funcionários e descrição/status pra serviços), dá pra adicionar mais campos depois se precisar.
