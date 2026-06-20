@@ -1,6 +1,6 @@
 # Sistema Integrado da Mineradora
 
-Projeto final da disciplina, sistema de gestão pra mineradora com front-end em React e back-end em Node + Express, usando Supabase como banco de dados.
+Projeto final da disciplina de Desenvolvimento Web, sistema de gestão pra mineradora com front-end em React e back-end em Node + Express, usando Supabase como banco de dados.
 
 ## O que tem aqui
 
@@ -50,7 +50,3 @@ frontend/
     services/api.js
     App.jsx
 ```
-
-## Obs
-
-As páginas de Cidades, Funcionários e Serviços eu fiz seguindo o mesmo modelo que a professora passou pra Equipamentos. As tabelas de funcionários e serviços eu que defini as colunas (nome/cargo pra funcionários e descrição/status pra serviços), dá pra adicionar mais campos depois se precisar.
